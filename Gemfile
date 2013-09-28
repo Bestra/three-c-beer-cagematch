@@ -29,6 +29,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'nokogiri'
+
 group :test do
   gem 'rspec-rails'
   gem 'vcr'
