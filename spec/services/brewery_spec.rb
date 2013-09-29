@@ -1,4 +1,5 @@
 require_relative "../../app/services/brewery"
+require_relative "../../app/services/beer"
 require 'vcr'
 require 'vcr_helper'
 describe Brewery do
