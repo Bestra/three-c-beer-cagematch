@@ -1,6 +1,5 @@
 require_relative "../../app/services/ranked_beer_list"
 require_relative "../../app/services/beer"
-require 'pry'
 describe RankedBeerList do
   def stub_beer(rAvg, votes)
     a = Beer.new

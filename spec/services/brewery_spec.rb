@@ -1,7 +1,6 @@
 require_relative "../../app/services/brewery"
 require 'vcr'
 require 'vcr_helper'
-require 'pry'
 describe Brewery do
   it "can initialize from a url" do
     VCR.use_cassette("cbc-profile-page") do
