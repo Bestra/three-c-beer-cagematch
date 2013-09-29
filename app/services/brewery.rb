@@ -6,8 +6,17 @@ class Brewery
 
   def self.from_url(url)
     b = Brewery.new
-    brewery_page = Nokogiri::HTML(open(url))
-    b.name =  brewery_page.css(".titleBar > h1").text
+    brewery_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
+    b.name =  name_from_page(brewery_page)
+    b.beers = Brewery.create_beers(extract_beer_tables(brewery_page))
+    b
+  end
+
+  def self.name_from_page(brewery_page)
+    brewery_page.css(".titleBar > h1").text
+  end
+
+  def self.extract_beer_tables(brewery_page)
     beer_tables = brewery_page.css('#baContent > table:last > tr:first tr').drop(2)
     raw_data = []
     beer_tables.each do |table|
@@ -16,8 +25,7 @@ class Brewery
       table_row += urls
       raw_data << table_row
     end
-    b.beers = Brewery.create_beers raw_data
-    b
+    raw_data
   end
 
   def self.create_beers(data_rows)
