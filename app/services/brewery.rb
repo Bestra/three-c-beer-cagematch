@@ -12,11 +12,15 @@ class Brewery
     raw_data = []
     beer_tables.each do |table|
       table_row = table.css('td').map(&:text).drop(1)
-      urls = table.css('td a')[1..2].map { |u| u['href'] }
+      urls = table.css('td a')[1..2].map { |u| "http://www.beeradvocate.com" + u['href'] }
       table_row += urls
       raw_data << table_row
     end
-    b.beers = raw_data
+    b.beers = Brewery.create_beers raw_data
     b
+  end
+
+  def self.create_beers(data_rows)
+    Beer.create_beers_from_brewery_table data_rows, self
   end
 end
