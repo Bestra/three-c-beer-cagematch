@@ -29,7 +29,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+#for the actual scraping
 gem 'nokogiri'
+
+group :development, :test do
+  gem 'pry'
+end
 
 group :test do
   gem 'rspec-rails'
