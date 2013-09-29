@@ -1,8 +1,7 @@
 require_relative "../../app/services/ranked_beer_list"
-require_relative "../../app/services/beer"
 describe RankedBeerList do
   def stub_beer(rAvg, votes)
-    a = Beer.new
+    a = double("Beer")
     a.stub(:votes).and_return(votes)
     a.stub(:rAvg).and_return(rAvg)
     a
