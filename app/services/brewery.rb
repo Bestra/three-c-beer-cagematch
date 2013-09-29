@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class Brewery
-  attr_accessor :city_name, :name, :url, :beers
+  attr_accessor *%i(city_name name url beers)
 
   def self.from_url(url)
     b = Brewery.new

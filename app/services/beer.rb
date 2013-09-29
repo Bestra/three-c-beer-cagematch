@@ -1,6 +1,5 @@
 class Beer
-  attr_accessor :name, :style_name, :style_url, :profile_url, :brewery,
-    :abv, :rAvg, :votes
+  attr_accessor *%i(name style_name style_url profile_url brewery abv rAvg votes)
 
   def self.create_beers_from_brewery_table(table_rows, brewery=nil)
     table_rows.map do |row|
