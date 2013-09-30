@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930120712) do
+ActiveRecord::Schema.define(version: 20130930123020) do
 
   create_table "cached_breweries", force: true do |t|
     t.string   "name"
@@ -21,5 +21,7 @@ ActiveRecord::Schema.define(version: 20130930120712) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "cached_breweries", ["profile_url"], name: "index_cached_breweries_on_profile_url"
 
 end
