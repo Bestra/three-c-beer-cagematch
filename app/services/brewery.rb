@@ -2,17 +2,26 @@ require 'nokogiri'
 require 'open-uri'
 
 class Brewery
-  attr_accessor *%i(city_name name url beers)
+  attr_accessor *%i(city_name name profile_url beers)
 
-  def self.from_url(url)
-    b = Brewery.new
-    brewery_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
-    b.name =  name_from_page(brewery_page)
-    b.beers = Brewery.create_beers(extract_beer_tables(brewery_page))
+  def self.for_url(url)
+    b = CachedBrewery.for_url url
+    unless b
+      b = Brewery.new
+      b.initialize_from_url url
+      CachedBrewery.save b
+    end
     b
   end
 
-  def self.name_from_page(brewery_page)
+  def initialize_from_url(url)
+      brewery_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
+      @name =  Brewery.extract_brewery_name(brewery_page)
+      @profile_url = url
+      @beers = Brewery.create_beers(Brewery.extract_beer_tables(brewery_page))
+  end
+
+  def self.extract_brewery_name(brewery_page)
     brewery_page.css(".titleBar > h1").text
   end
 
