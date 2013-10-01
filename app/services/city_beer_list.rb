@@ -1,4 +1,4 @@
-class BeerRanking
+class CityBeerList
   PROFILE_URLS = {
     columbus: "http://beeradvocate.com/beerfly/city/40",
     cincinatti: "http://beeradvocate.com/beerfly/city/39",

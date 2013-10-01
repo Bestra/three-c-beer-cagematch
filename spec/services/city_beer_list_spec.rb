@@ -1,7 +1,7 @@
-require_relative "../../app/services/beer_ranking"
+require_relative "../../app/services/city_beer_list"
 require_relative "../../app/services/city"
 require_relative "../../app/services/beer"
-describe BeerRanking do
+describe CityBeerList do
   #make a beer with randomized ranking and votes
   def stub_beer(brewery_name, city_name)
      b = Beer.new "Bud", "Pilsner", "?", rand + rand(4), rand(100), "/1", "/1"
@@ -16,7 +16,7 @@ describe BeerRanking do
        c.stub(:beers).and_return [stub_beer("A Brewery", city_name)]
        c
      end
-     BeerRanking.beer_list.count.should == 3
+     CityBeerList.beer_list.count.should == 3
   end
 
   describe "specifying cities to search" do
