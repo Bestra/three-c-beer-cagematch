@@ -4,20 +4,20 @@ require 'open-uri'
 class City
   attr_accessor *%i(name breweries profile_url)
 
-  def self.create_from_url(name, url)
+  def self.create_from_url(url, name="Unspecified")
     c = City.new
     c.name = name
     c.profile_url = url
     city_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
-    c.breweries = create_breweries(city_page)
+    c.breweries = City.populate_breweries(city_page, name)
     c
   end
 
   private
 
-  def self.create_breweries(page)
-    brewery_list = extract_brewery_info(page)
-    brewery_list.map { |brewery| Brewery.from_url brewery[1] }
+  def self.populate_breweries(page, city_name)
+    brewery_list = City.extract_brewery_info(page)
+    brewery_list.map { |brewery| Brewery.for_url brewery[1], city_name }
   end
 
   def self.extract_brewery_info(page)

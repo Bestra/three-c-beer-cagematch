@@ -4,9 +4,9 @@ require 'open-uri'
 class Brewery
   attr_accessor *%i(city_name name profile_url beers)
 
-  def self.for_url(url)
+  def self.for_url(url, city_name="Undefined")
     b = CachedBrewery.for_url url
-    unless b
+    if !b
       b = Brewery.new
       begin
         b.initialize_from_url url
@@ -17,6 +17,7 @@ class Brewery
         b.beers = []
       end
     end
+    b.city_name = city_name
     b
   end
 
