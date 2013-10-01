@@ -8,8 +8,14 @@ class Brewery
     b = CachedBrewery.for_url url
     unless b
       b = Brewery.new
-      b.initialize_from_url url
-      CachedBrewery.save b
+      begin
+        b.initialize_from_url url
+        CachedBrewery.save b
+      rescue OpenURI::HTTPError
+        # if the brewery page couldn't be read return
+        # an empty list of beers
+        b.beers = []
+      end
     end
     b
   end
