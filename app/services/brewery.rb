@@ -9,7 +9,7 @@ class Brewery
     if !b
       b = Brewery.new
       begin
-        b.initialize_from_url url
+        b.set_data_from_url url
         CachedBrewery.save b
       rescue OpenURI::HTTPError
         # if the brewery page couldn't be read return
@@ -21,7 +21,7 @@ class Brewery
     b
   end
 
-  def initialize_from_url(url)
+  def set_data_from_url(url)
       brewery_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
       @name =  Brewery.extract_brewery_name(brewery_page)
       @profile_url = url
