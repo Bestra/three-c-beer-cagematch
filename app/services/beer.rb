@@ -23,4 +23,16 @@ class Beer
 
   end
 
+  def brewery
+    @brewery || Brewery.new
+  end
+
+  def brewery_name
+    brewery.name
+  end
+
+  def city_name
+    brewery.city_name
+  end
+
 end
