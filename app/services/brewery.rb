@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class Brewery
-  attr_accessor *%i(city_name name profile_url beers)
+  attr_accessor *%i(city_name name profile_url beers errors)
 
   def self.for_url(url, city_name="Undefined")
     b = CachedBrewery.for_url url
