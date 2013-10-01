@@ -10,19 +10,43 @@ describe CityBeerList do
      b
   end
 
-  it "returns a beer list" do
+  RSpec::Matchers.define :have_beers_from do |expected_cities|
+    match do |beer_list|
+      city_names(beer_list) == expected_cities.sort
+    end
+
+    failure_message_for_should do |beer_list|
+      "Listed cities: #{city_names(beer_list)} should match #{expected_cities}"
+    end
+
+    def city_names(list)
+      list.map(&:city_name).uniq.sort
+    end
+
+  end
+
+  describe "listing beers from each city" do
+    before(:each) do
      City.stub(:create_from_url) do |url, city_name|
        c = City.new
        c.stub(:beers).and_return [stub_beer("A Brewery", city_name)]
        c
      end
-     CityBeerList.beer_list.count.should == 3
-  end
+    end
 
-  describe "specifying cities to search" do
-    it "only returns results from the specified cities"
+    it "returns a beer list for Cleveland, Columbus, and Cincinatti" do
+       CityBeerList.beer_list.count.should == 3
+       CityBeerList.beer_list.should have_beers_from %w(Cleveland Columbus Cincinatti)
+    end
 
-    it "returns nothing from an invalid city name"
+    it "only returns results from the specified cities" do
+      CityBeerList.beer_list(cities: [:cleveland]).should have_beers_from ["Cleveland"]
+      CityBeerList.beer_list(cities: [:cleveland, :columbus]).should have_beers_from ["Cleveland", "Columbus"]
+    end
+
+    it "returns an empty list from an invalid city name" do
+      CityBeerList.beer_list(cities: [:capybara]).count.should == 0
+    end
 
   end
 
