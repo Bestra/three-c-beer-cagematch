@@ -21,6 +21,13 @@ class Brewery
     b
   end
 
+  def initialize(params={})
+    @beers = params[:beers] || []
+    @name = params[:name] || "Undefined"
+    @city_name = params[:city_name] || "Undefined"
+    @errors = {}
+  end
+
   def set_data_from_url(url)
       brewery_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
       @name =  Brewery.extract_brewery_name(brewery_page)
