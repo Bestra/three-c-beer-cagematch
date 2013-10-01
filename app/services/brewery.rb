@@ -14,7 +14,7 @@ class Brewery
       rescue OpenURI::HTTPError
         # if the brewery page couldn't be read return
         # an empty list of beers
-        b.beers = []
+        b.errors[:network] = "Loading data url timed out"
       end
     end
     b.city_name = city_name
