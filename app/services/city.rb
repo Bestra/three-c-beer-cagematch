@@ -13,6 +13,10 @@ class City
     c
   end
 
+  def beers
+    breweries.flat_map(&:beers)
+  end
+
   private
 
   def self.populate_breweries(page, city_name)

@@ -13,4 +13,7 @@ describe City do
       c.profile_url.should == test_url
     end
   end
+
+  it "lists the beers from all its breweries"
+
 end
