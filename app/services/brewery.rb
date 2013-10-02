@@ -7,7 +7,7 @@ class Brewery
   def self.for_url(url, city_name="Undefined")
     b = CachedBrewery.for_url url
     if !b
-      b = Brewery.new
+      b = Brewery.new city_name: city_name
       begin
         b.set_data_from_url url
         CachedBrewery.save b
