@@ -2,13 +2,6 @@ require_relative "../../app/services/city_beer_list"
 require_relative "../../app/services/city"
 require_relative "../../app/services/beer"
 describe CityBeerList do
-  #make a beer with randomized ranking and votes
-  def stub_beer(brewery_name, city_name, style_name="Pilsner")
-     b = Beer.new "Bud", style_name, "?", rand + rand(4), rand(100), "/1", "/1"
-     b.stub(brewery_name: brewery_name)
-     b.stub(city_name: city_name)
-     b
-  end
 
   RSpec::Matchers.define :have_beers_from do |expected_cities|
     match do |beer_list|

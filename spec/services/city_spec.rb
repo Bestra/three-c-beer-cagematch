@@ -14,6 +14,4 @@ describe City do
     end
   end
 
-  it "lists the beers from all its breweries"
-
 end
