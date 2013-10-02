@@ -3,7 +3,6 @@ require_relative "../../app/services/beer"
 require 'vcr'
 require 'vcr_helper'
 describe Brewery do
-  it "can initialize from a hash"
 
   let(:test_url) { "http://beeradvocate.com/beer/profile/341" }
   let(:fake_class) { Class.new }
