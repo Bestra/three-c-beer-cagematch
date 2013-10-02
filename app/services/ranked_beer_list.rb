@@ -5,7 +5,7 @@ class RankedBeerList
     @considered_beers = beers
   end
 
-  MIN_VOTES = 50
+  MIN_VOTES = 100
 
   def ranked_beers
     self.considered_beers.map { |b| {rank: rank_beer(b), beer: b.json_output} }
