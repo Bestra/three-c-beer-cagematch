@@ -4,6 +4,7 @@ describe RankedBeerList do
     a = double("Beer")
     a.stub(:votes).and_return(votes)
     a.stub(:rAvg).and_return(rAvg)
+    a.stub(:json_output).and_return({ votes: votes, rAvg: rAvg })
     a
   end
 
@@ -11,7 +12,7 @@ describe RankedBeerList do
     beers = [stub_beer(3.0, 7), stub_beer(3.0, 1), stub_beer(2.0, 1)]
     ranked_beers = RankedBeerList.new(beers).ranked_beers
     ranked_beers[0][:rank].should be > ranked_beers[1][:rank]
-    ranked_beers[0][:beer].votes.should == 7
+    ranked_beers[0][:beer][:votes].should == 7
   end
 
 end
