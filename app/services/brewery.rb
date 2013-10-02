@@ -8,11 +8,14 @@ class Brewery
     b = CachedBrewery.for_url url
     if !b
       b = Brewery.new city_name: city_name
+      tries = 0
       begin
+        tries += 1
         b.set_data_from_url url
         CachedBrewery.save b
-      rescue OpenURI::HTTPError
+      rescue OpenURI::HTTPError, Zlib::BufError
         # if the brewery page couldn't be read return
+        retry if tries < 3
         # an empty list of beers
         b.errors[:network] = "Loading data url timed out"
       end
