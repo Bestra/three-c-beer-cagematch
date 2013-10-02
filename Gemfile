@@ -11,6 +11,9 @@ gem 'pg'
 #serve with thin
 gem 'thin'
 
+#of course
+gem 'twitter-bootstrap-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
