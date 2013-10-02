@@ -13,6 +13,6 @@ class BeerQueryController < ApplicationController
       results = results.take(max_results)
     end
 
-    render json: results.to_json
+    render json: results
   end
 end
