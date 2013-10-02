@@ -28,14 +28,14 @@ describe CachedBrewery do
     b.should be_nil
   end
 
-  it "returns nil if a cached brewery is more than a day old" do
+  it "returns nil and deletes the cached brewery if it's more than a day old" do
     cb = CachedBrewery.create!(profile_url: url, name: "Test", city_name: "Columbus", beers: [beer1, beer2])
     cb.created_at = Date.today - 5.days
     cb.save
     b = CachedBrewery.for_url url
     b.should be_nil
+    CachedBrewery.count.should == 0
   end
-
 
   it "saves a brewery to the cache" do
     CachedBrewery.save test_brewery
