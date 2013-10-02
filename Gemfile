@@ -14,6 +14,9 @@ gem 'thin'
 #of course
 gem 'twitter-bootstrap-rails'
 
+#use haml for views
+gem 'haml-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
