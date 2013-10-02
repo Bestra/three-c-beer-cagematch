@@ -17,7 +17,7 @@ describe CachedBrewery do
   it "returns a cached brewery from a url" do
     CachedBrewery.create!(profile_url: url, name: test_name, city_name: "Columbus", beers: [beer1, beer2])
     b = CachedBrewery.for_url url
-    b.should be_a Brewery
+    b.should be_an_instance_of Brewery
     b.name.should == test_name
     b.beers[0].name.should == "Bud"
     b.beers[1].name.should == "Lite"
@@ -40,7 +40,7 @@ describe CachedBrewery do
   it "saves a brewery to the cache" do
     CachedBrewery.save test_brewery
     b = CachedBrewery.for_url url
-    b.should be_a Brewery
+    b.should be_an_instance_of Brewery
     b.name.should == test_name
     b.beers[0].name.should == "Bud"
     b.beers[1].name.should == "Lite"

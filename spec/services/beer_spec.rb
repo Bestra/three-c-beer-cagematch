@@ -9,7 +9,7 @@ describe Beer do
     let(:a_brewery) { Brewery.new }
     it "sets its attributes from an array of strings" do
       b = Beer.new *table_row, a_brewery
-      b.should be_a(Beer)
+      b.should be_an_instance_of Beer
     end
   end
 
