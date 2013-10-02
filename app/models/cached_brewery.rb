@@ -1,3 +1,4 @@
+require 'beer'
 class CachedBrewery < ActiveRecord::Base
   serialize :beers
 
@@ -27,6 +28,7 @@ class CachedBrewery < ActiveRecord::Base
     b.profile_url = self.profile_url
     b.city_name = self.city_name
     b.beers = self.beers
+    b.beers.each { |beer| beer.brewery = b }
     b
   end
 end
