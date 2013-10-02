@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130930123020) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cached_breweries", force: true do |t|
     t.string   "name"
     t.string   "profile_url"
@@ -22,6 +25,6 @@ ActiveRecord::Schema.define(version: 20130930123020) do
     t.datetime "updated_at"
   end
 
-  add_index "cached_breweries", ["profile_url"], name: "index_cached_breweries_on_profile_url"
+  add_index "cached_breweries", ["profile_url"], name: "index_cached_breweries_on_profile_url", using: :btree
 
 end
