@@ -35,4 +35,17 @@ class Beer
     brewery.city_name
   end
 
+  def json_output
+    { name: name,
+    style_name: style_name,
+    abv: abv,
+    rAvg: rAvg,
+    votes: votes,
+    profile_url: profile_url,
+    style_url: style_url,
+    brewery_name: brewery_name,
+    city_name: city_name
+    }
+  end
+
 end

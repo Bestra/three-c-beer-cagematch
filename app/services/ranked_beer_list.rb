@@ -8,7 +8,7 @@ class RankedBeerList
   MIN_VOTES = 50
 
   def ranked_beers
-    self.considered_beers.map { |b| {rank: rank_beer(b), beer: b} }
+    self.considered_beers.map { |b| {rank: rank_beer(b), beer: b.json_output} }
     .sort_by { |i| i[:rank] }.reverse!
   end
 
