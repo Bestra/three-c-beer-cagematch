@@ -32,6 +32,7 @@ class Brewery
   end
 
   def set_data_from_url(url)
+      puts "Getting page for #{url}"
       brewery_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
       @name =  Brewery.extract_brewery_name(brewery_page)
       @profile_url = url
