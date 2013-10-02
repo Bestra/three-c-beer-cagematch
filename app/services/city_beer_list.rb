@@ -17,7 +17,13 @@ class CityBeerList
     end.compact
 
     all_beers = cities.flat_map(&:beers)
-
+    if style
+      all_beers.select do |beer|
+        beer.style_name.match style.to_s
+      end
+    else
+      all_beers
+    end
   end
 
 end

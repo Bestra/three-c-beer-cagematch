@@ -44,11 +44,7 @@ describe Brewery do
         b = Brewery.for_url(test_url)
         b.beers.should == []
         b.errors[:network].should_not be_nil
-
-
       end
     end
-
   end
-
 end
