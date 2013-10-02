@@ -8,8 +8,16 @@ class City
     c = City.new
     c.name = name
     c.profile_url = url
-    city_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
-    c.breweries = City.populate_breweries(city_page, name)
+    tries = 0
+    begin
+      tries += 1
+      city_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
+      c.breweries = City.populate_breweries(city_page, name)
+    rescue OpenURI::HTTPError, Zlib::BufError
+      retry if tries < 3
+      c.breweries = []
+        b.errors[:network] = "There was a problem loading the city page"
+    end
     c
   end
 
