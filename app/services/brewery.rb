@@ -32,7 +32,11 @@ class Brewery
       brewery_page = Nokogiri::HTML(open(url, read_timeout: 0.2))
       @name =  Brewery.extract_brewery_name(brewery_page)
       @profile_url = url
-      @beers = Brewery.create_beers(Brewery.extract_beer_tables(brewery_page))
+      @beers = create_beers(Brewery.extract_beer_tables(brewery_page))
+  end
+
+  def create_beers(data_rows)
+    Beer.create_beers_from_brewery_table data_rows, self
   end
 
   def self.extract_brewery_name(brewery_page)
@@ -51,7 +55,4 @@ class Brewery
     raw_data
   end
 
-  def self.create_beers(data_rows)
-    Beer.create_beers_from_brewery_table data_rows, self
-  end
 end
