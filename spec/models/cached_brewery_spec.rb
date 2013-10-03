@@ -1,8 +1,9 @@
 require "spec_helper"
+require 'beer_stubbing'
 describe CachedBrewery do
 
-  let(:beer1) { Beer.new "Bud", "Pilsner", "?", "3", "12", "/1", "/1" }
-  let(:beer2) { Beer.new "Lite", "Pilsner", "?", "4", "12", "/2", "/1" }
+  let(:beer1) { Beer.new name: "Bud" }
+  let(:beer2) { Beer.new name: "Lite" }
   let(:url) { "/beer/1" }
   let(:test_name) { "Test Brewery" }
   let(:test_brewery) do
