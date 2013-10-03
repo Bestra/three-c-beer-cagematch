@@ -13,7 +13,7 @@
   <p>You'll get back a JSON array with the beer's ranking and the beer's properties. Some of the fields are self-explanatory but here are a few:</p>
   <dl>
     <dt>rank</dt>
-    <dd>This is the weighted rating of the beer. Compared to the beers average rating <code>rAvg</code> it will likely be slightly lower.</dd>
+    <dd>This is the weighted rating of the beer. Compared to the beer's average rating it will likely be slightly lower.</dd>
     <dt>beer.rAvg</dt>
     <dd>The average rating for the beer on beeradvocate.</dd>
     <dt>beer.votes</dt>
@@ -21,6 +21,7 @@
     <dt>beer.abv</dt>
     <dd>The beer's alchohol by volume percentaage. Beeradvocate lists many beers' abv as "?", and in that case the abv will be 0.0 </dd>
   </dl>
+  </br>
   <p>There are a few <b>parameters</b> you can specify in order to cull the data and also change the rankings.</p>
   <dl>
     <dt>cities</dt>
