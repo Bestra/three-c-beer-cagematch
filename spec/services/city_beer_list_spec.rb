@@ -1,6 +1,7 @@
 require_relative "../../app/services/city_beer_list"
 require_relative "../../app/services/city"
 require_relative "../../app/services/beer"
+require 'beer_stubbing'
 describe CityBeerList do
 
   RSpec::Matchers.define :have_beers_from do |expected_cities|
@@ -73,6 +74,9 @@ describe CityBeerList do
 
      CityBeerList.beer_list(cities: [:columbus], style: "Rye")
      .should return_styles ["Rye Beer"]
+
+     CityBeerList.beer_list(cities: [:columbus], style: "(Rye)|(IPA)")
+     .should return_styles ["Rye Beer", "American IPA", "English IPA"]
 
      CityBeerList.beer_list(cities: [:columbus])
      .should return_styles ["Rye Beer", "American IPA", "English IPA"]
