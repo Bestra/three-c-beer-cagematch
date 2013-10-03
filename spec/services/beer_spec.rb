@@ -53,15 +53,18 @@ describe Beer do
     let(:beer) { Beer.new brewery: brewery }
 
     it "returns the brewery's name" do
-
+      beer.brewery_name.should == "CBC"
     end
 
     it "returns the name of the brewery's city" do
-
+      beer.city_name.should == "Columbus"
     end
 
     it "returns a new brewery if the brewery hasn't been set" do
-
+      b = Beer.new
+      b.brewery.should_not be_nil
+      b.brewery_name.should == "Undefined"
+      b.city_name.should == "Undefined"
     end
 
   end
