@@ -10,6 +10,17 @@
 <h2>Usage</h2>
 <div class="usage">
   <h3>You can send a GET request to <a href="beers">three-c-brewery-cagematch.herokuapp.com/beers</a></h3>
+  <p>You'll get back a JSON array with the beer's ranking and the beer's properties. Some of the fields are self-explanatory but here are a few:</p>
+  <dl>
+    <dt>rank</dt>
+    <dd>This is the weighted rating of the beer. Compared to the beers average rating <code>rAvg</code> it will likely be slightly lower.</dd>
+    <dt>beer.rAvg</dt>
+    <dd>The average rating for the beer on beeradvocate.</dd>
+    <dt>beer.votes</dt>
+    <dd>The number of ratings that the beer has been given.  rAvg and votes both contribute to the beer's weighted rating.</dd>
+    <dt>beer.abv</dt>
+    <dd>The beer's alchohol by volume percentaage. Beeradvocate lists many beers' abv as "?", and in that case the abv will be 0.0 </dd>
+  </dl>
   <p>There are a few <b>parameters</b> you can specify in order to cull the data and also change the rankings.</p>
   <dl>
     <dt>cities</dt>
