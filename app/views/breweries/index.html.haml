@@ -1,0 +1,39 @@
+%h1 Breweries
+
+%table
+  %thead
+    %tr
+      %th Brewery
+      %th Rank
+  %tbody
+    - @breweries.each do |brewery|
+      = render partial: 'brewery', locals: {brewery: brewery}
+
+:javascript
+  $(function() {
+    $.getJSON('/beers', function(data){
+      console.log("Data fetched!");
+      var breweryData = d3.nest().key(function(d) { return d.beer.brewery_name; }).entries(data);
+      var chart = d3.select("body").append("div").attr("id", "chart");
+      var breweries = chart.selectAll(".brewery-chart").data(breweryData);
+      var newBreweries = breweries.enter().append("div").attr("class", "brewery-chart")
+      newBreweries.append("div").attr("class", "brewery-name").text(function(d) { return d.key;});
+      var svgChart = newBreweries.append("svg").attr("width", 500).attr("height", 50).style("stroke", "black").style("opacity", 0.4);
+
+      var ratingScale = d3.scale.linear().domain([3, 5]).range([0, 500]);
+      var voteScale =  d3.scale.log().base(2).domain([1, 2000]).range([0, 15]);
+
+      var ratingAxis = d3.svg.axis().scale(ratingScale).ticks(4)
+      svgChart.append("g").attr("class", "axis").attr("transform", "translate(0,25)").call(ratingAxis);
+
+      var centerY = 15;
+      var ratingLines = svgChart.selectAll(".line").data(function(d) { return d.values; });
+      ratingLines.enter().append("svg:line").attr("class", "line")
+      .attr("x1", function(d) { return ratingScale(d.rank); })
+      .attr("x2", function(d) { return ratingScale(d.rank); })
+      .attr("y1", function(d) { return centerY - voteScale(d.beer.votes); })
+      .attr("y2", function(d) { return centerY + voteScale(d.beer.votes); })
+      .style("stroke-width", 1)
+      .append("svg:title").attr("text", function(d) { return d.beer.name; });
+    });
+  });

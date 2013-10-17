@@ -11,11 +11,11 @@ gem 'pg'
 #serve with thin
 gem 'thin'
 
+#haml
+gem 'haml'
+
 #of course
 gem 'twitter-bootstrap-rails'
-
-#use haml for views
-gem 'haml-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

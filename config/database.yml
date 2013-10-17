@@ -3,21 +3,13 @@ development:
   encoding: unicode
   database: cagematch_development
   pool: 5
-  host: localhost
-  username: Chris
-  password:
 test:
   adapter: postgresql
   encoding: unicode
   database: cagematch_test
   pool: 5
-  host: localhost
-  username: Chris
-  password:
 production:
   adapter: postgresql
   encoding: unicode
   database: cagematch_production
   pool: 5
-  username: Chris
-  password:
